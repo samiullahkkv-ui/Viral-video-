@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Viral Trending Videos</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background-color: #050505; color: #fff; font-family: sans-serif; padding: 10px; }
+    
+    .header { 
+      width: 100%; padding: 15px; text-align: center; 
+      border-bottom: 3px solid #fe2c55; margin-bottom: 20px; 
+      font-size: 26px; color: #fe2c55; font-weight: 900;
+      text-transform: uppercase; letter-spacing: 2px;
+    }
+    
+    .feed-container { 
+      max-width: 500px; margin: 0 auto; display: flex; flex-direction: column; gap: 25px; 
+    }
+    
+    /* Post/Video Card */
+    .ad-card {
+      background: #111; border-radius: 14px; overflow: hidden; 
+      border: 1px solid #333; position: relative; cursor: pointer; 
+      box-shadow: 0 5px 15px rgba(0,0,0,0.8);
+    }
+    
+    .ad-card img { 
+      width: 100%; height: 350px; object-fit: cover; 
+      filter: brightness(0.8); /* Halki si dark taake Play button wazeh ho */
+    }
+    
+    .ad-tag { 
+      position: absolute; top: 12px; left: 12px; background: #fe2c55; 
+      color: #fff; font-size: 12px; padding: 5px 12px; border-radius: 4px; font-weight: bold;
+      z-index: 10;
+    }
+    
+    /* 🔴 Play Button Overlay 🔴 */
+    .play-btn {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 70px; height: 70px;
+      background: rgba(0, 0, 0, 0.6);
+      border: 3px solid #fff;
+      border-radius: 50%;
+      display: flex; justify-content: center; align-items: center;
+      z-index: 10;
+      box-shadow: 0 0 15px rgba(254,44,85,0.5);
+    }
+    .play-btn::after {
+      content: '▶';
+      color: #fff; font-size: 30px;
+      margin-left: 5px; /* Triangle ko center karne ke liye */
+    }
+    
+    .info { 
+      padding: 12px; text-align: left; color: #eee; font-size: 15px; 
+      background: #1a1a1a; border-top: 2px solid #fe2c55;
+    }
+    .info span { font-weight: bold; color: #fe2c55; }
+    
+    /* Adsterra Banners Container */
+    .banner-slot {
+      width: 100%; display: flex; justify-content: center; align-items: center;
+      padding: 5px 0; min-height: 60px; overflow: hidden;
+      background: #0a0a0a; border-radius: 8px; border: 1px dashed #333;
+    }
+  </style>
+</head>
+<body>
+
+<div class="header">🔥 Trending Videos</div>
+
+<div class="feed-container">
+
+  <div class="ad-card" onclick="openDirectLink()">
+    <div class="ad-tag">Viral Video</div>
+    <img src="https://i.ibb.co/Z6dZtKMP/your-filename.jpg" alt="Video Thumb"> 
+    <div class="play-btn"></div>
+    <div class="info"><span>@viral_hub:</span> Watch full uncut video here! 😱</div>
+  </div>
+  <div class="banner-slot">
+    <script type="text/javascript">
+      atOptions = { 'key' : 'fe8aa9149ae7d82faf899145087d9c7f', 'format' : 'iframe', 'height' : 300, 'width' : 160, 'params' : {} };
+    </script>
+    <script type="text/javascript" src="//www.highperformanceformat.com/fe8aa9149ae7d82faf899145087d9c7f/invoke.js"></script>
+  </div>
+
+  <div class="ad-card" onclick="openDirectLink()">
+    <div class="ad-tag">Leaked</div>
+    <img src="https://i.ibb.co/HpBc9gJT/your-filename.jpg" alt="Video Thumb">
+    <div class="play-btn"></div>
+    <div class="info"><span>@trending_now:</span> Part 2 is finally out! 🔥</div>
+  </div>
+  <div class="banner-slot">
+    <script type="text/javascript">
+      atOptions = { 'key' : '974d3406055af3ea9f321838f9c01398', 'format' : 'iframe', 'height' : 600, 'width' : 160, 'params' : {} };
+    </script>
+    <script type="text/javascript" src="//www.highperformanceformat.com/974d3406055af3ea9f321838f9c01398/invoke.js"></script>
+  </div>
+
+  <div class="ad-card" onclick="openDirectLink()">
+    <div class="ad-tag">Trending #1</div>
+    <img src="https://i.ibb.co/Q3k6mKXz/your-filename.jpg" alt="Video Thumb">
+    <div class="play-btn"></div>
+    <div class="info"><span>@daily_clips:</span> Tap to play video. 🔞</div>
+  </div>
+  <div class="banner-slot">
+    <script type="text/javascript">
+      atOptions = { 'key' : '47ed111e16ef86aa2b128650e1648cde', 'format' : 'iframe', 'height' : 50, 'width' : 320, 'params' : {} };
+    </script>
+    <script type="text/javascript" src="//www.highperformanceformat.com/47ed111e16ef86aa2b128650e1648cde/invoke.js"></script>
+  </div>
+
+  <div class="ad-card" onclick="openDirectLink()">
+    <div class="ad-tag">Must Watch</div>
+    <img src="https://i.ibb.co/DHrkhxsW/your-filename.jpg" alt="Video Thumb">
+    <div class="play-btn"></div>
+    <div class="info"><span>@exclusive:</span> You won't believe this! 🤯</div>
+  </div>
+  <div class="banner-slot">
+    <script type='text/javascript' src='//pl29119917.profitablecpmratenetwork.com/1b/ed/09/1bed093d24ba42fac57052db42b2de12.js'></script>
+  </div>
+
+  <div class="ad-card" onclick="openDirectLink()">
+    <div class="ad-tag">Viral Video</div>
+    <img src="https://i.ibb.co/Z6dZtKMP/your-filename.jpg" alt="Video Thumb">
+    <div class="play-btn"></div>
+    <div class="info"><span>@viral_hub:</span> Secret footage leaked! 🤫</div>
+  </div>
+  <div class="banner-slot">
+    <div id="container-3fe4eeb6b6ddf68c84674a5b72462cca"></div>
+    <script async="async" data-cfasync="false" src="//pl29119918.profitablecpmratenetwork.com/3fe4eeb6b6ddf68c84674a5b72462cca/invoke.js"></script>
+  </div>
+
+  <div class="ad-card" onclick="openDirectLink()">
+    <div class="ad-tag">New Clip</div>
+    <img src="https://i.ibb.co/HpBc9gJT/your-filename.jpg" alt="Video Thumb">
+    <div class="play-btn"></div>
+    <div class="info"><span>@user991:</span> Watch before it gets deleted! ⚠️</div>
+  </div>
+  <div class="banner-slot">
+    <script type='text/javascript' src='//pl29119920.profitablecpmratenetwork.com/23/6a/79/236a79afd277968655375c22c8a750fb.js'></script>
+  </div>
+
+  <div class="ad-card" onclick="openDirectLink()">
+    <div class="ad-tag">Top Hit</div>
+    <img src="https://i.ibb.co/Q3k6mKXz/your-filename.jpg" alt="Video Thumb">
+    <div class="play-btn"></div>
+    <div class="info"><span>@top_videos:</span> Full HD Video Link 👇</div>
+  </div>
+  <div class="banner-slot">
+    <script type="text/javascript">
+      atOptions = { 'key' : 'd5bf2c6e917eaf2f43a442e5dad4b5d6', 'format' : 'iframe', 'height' : 60, 'width' : 468, 'params' : {} };
+    </script>
+    <script type="text/javascript" src="//www.highperformanceformat.com/d5bf2c6e917eaf2f43a442e5dad4b5d6/invoke.js"></script>
+  </div>
+
+  <div class="ad-card" onclick="openDirectLink()">
+    <div class="ad-tag">Recommended</div>
+    <img src="https://i.ibb.co/DHrkhxsW/your-filename.jpg" alt="Video Thumb">
+    <div class="play-btn"></div>
+    <div class="info"><span>@foryou:</span> Just for you. Tap to play! ▶️</div>
+  </div>
+  <div class="banner-slot">
+    <script type="text/javascript">
+      atOptions = { 'key' : '714dc16729fb39b33ddc3f8a1cee6a55', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} };
+    </script>
+    <script type="text/javascript" src="//www.highperformanceformat.com/714dc16729fb39b33ddc3f8a1cee6a55/invoke.js"></script>
+  </div>
+
+  <div class="ad-card" onclick="openDirectLink()">
+    <div class="ad-tag">Live Stream</div>
+    <img src="https://i.ibb.co/Z6dZtKMP/your-filename.jpg" alt="Video Thumb">
+    <div class="play-btn"></div>
+    <div class="info"><span>@live_cam:</span> Join the private stream! 🔴</div>
+  </div>
+  <div class="banner-slot">
+    <a href="https://undergocutlery.com/wtaet9u1?key=e1288fdb966f08d0d8258b50cddcc2e1" target="_blank" style="display:block; width:100%; text-align:center; padding:15px; background:#fe2c55; color:#fff; text-decoration:none; font-weight:bold; border-radius:5px;">PLAY NEXT VIDEO HD</a>
+  </div>
+
+</div>
+
+<script>
+  // Aapka Adsterra Direct Link (Popunder / OnClick)
+  const DIRECT_LINK = "https://undergocutlery.com/wtaet9u1?key=e1288fdb966f08d0d8258b50cddcc2e1";
+
+  // 1. Unlimited Clicks on Post
+  // Jab bhi user kisi bhi post (image ya play button) par click karega, ye function chalega.
+  function openDirectLink() {
+    window.open(DIRECT_LINK, "_blank");
+  }
+
+  // 2. Extra Pop-under: Agar user ghalti se khali jagah ya background par click kar de
+  document.body.addEventListener('click', function(e) {
+    // Agar click kisi Post (.ad-card) par nahi hua, toh tab bhi ad khol do
+    if (!e.target.closest('.ad-card')) {
+      window.open(DIRECT_LINK, "_blank");
+    }
+  });
+</script>
+
+</body>
+</html>
