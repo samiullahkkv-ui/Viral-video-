@@ -3,13 +3,13 @@
 A mobile-friendly workspace for managing your own X profiles through the official X OAuth 2.0 flow.
 
 ## Starter features
-- Supabase email/password workspace sign-in.
+- Supabase email/password and Google OAuth workspace sign-in (Google provider must be configured in Supabase Auth).
 - Official X OAuth 2.0 authorization with PKCE.
 - Multiple authorized X profiles per workspace user.
 - Server-side encrypted OAuth tokens.
 - Publish a post to a selected connected account.
 - Browser-local drafts and schedule planning.
-- Overview, account list, composer, schedule, drafts, analytics preview, inbox placeholder and settings.
+- Overview, connected account list, post composer, saved publishing history, local drafts, local schedule planner, and settings. Analytics and inbox are not implemented; they are clearly marked unavailable.
 
 The analytics chart is illustrative. Drafts and schedule plans are stored in the browser; automated scheduled publishing, media uploads, inbox and live analytics are not active yet.
 
@@ -17,7 +17,7 @@ The analytics chart is illustrative. Drafts and schedule plans are stored in the
 1. Import this repository into Vercel.
 2. Add the environment variables below in Vercel Project Settings → Environment Variables.
 3. Run the SQL in supabase/schema.sql in your Supabase SQL Editor.
-4. In Supabase Auth, configure your site URL and allowed redirect URLs to your Vercel domain.
+4. In Supabase Auth, configure your site URL and allowed redirect URLs to your Vercel domain. Enable the Google provider and add Google OAuth Client ID/Secret; in Google Cloud, add the Supabase Auth callback URL shown on the provider settings page.
 5. In the X Developer Portal, create an OAuth 2.0 app. Enable user authentication, set app permissions to Read and Write, and set the callback URL to https://YOUR-DOMAIN/api/oauth/callback.
 6. Set the same callback URL as X_REDIRECT_URI in Vercel. Redeploy after adding environment variables.
 
