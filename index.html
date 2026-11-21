@@ -1,207 +1,119 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Viral Trending Videos</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background-color: #050505; color: #fff; font-family: sans-serif; padding: 10px; }
-    
-    .header { 
-      width: 100%; padding: 15px; text-align: center; 
-      border-bottom: 3px solid #fe2c55; margin-bottom: 20px; 
-      font-size: 26px; color: #fe2c55; font-weight: 900;
-      text-transform: uppercase; letter-spacing: 2px;
-    }
-    
-    .feed-container { 
-      max-width: 500px; margin: 0 auto; display: flex; flex-direction: column; gap: 25px; 
-    }
-    
-    /* Post/Video Card */
-    .ad-card {
-      background: #111; border-radius: 14px; overflow: hidden; 
-      border: 1px solid #333; position: relative; cursor: pointer; 
-      box-shadow: 0 5px 15px rgba(0,0,0,0.8);
-    }
-    
-    .ad-card img { 
-      width: 100%; height: 350px; object-fit: cover; 
-      filter: brightness(0.8); /* Halki si dark taake Play button wazeh ho */
-    }
-    
-    .ad-tag { 
-      position: absolute; top: 12px; left: 12px; background: #fe2c55; 
-      color: #fff; font-size: 12px; padding: 5px 12px; border-radius: 4px; font-weight: bold;
-      z-index: 10;
-    }
-    
-    /* 🔴 Play Button Overlay 🔴 */
-    .play-btn {
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      width: 70px; height: 70px;
-      background: rgba(0, 0, 0, 0.6);
-      border: 3px solid #fff;
-      border-radius: 50%;
-      display: flex; justify-content: center; align-items: center;
-      z-index: 10;
-      box-shadow: 0 0 15px rgba(254,44,85,0.5);
-    }
-    .play-btn::after {
-      content: '▶';
-      color: #fff; font-size: 30px;
-      margin-left: 5px; /* Triangle ko center karne ke liye */
-    }
-    
-    .info { 
-      padding: 12px; text-align: left; color: #eee; font-size: 15px; 
-      background: #1a1a1a; border-top: 2px solid #fe2c55;
-    }
-    .info span { font-weight: bold; color: #fe2c55; }
-    
-    /* Adsterra Banners Container */
-    .banner-slot {
-      width: 100%; display: flex; justify-content: center; align-items: center;
-      padding: 5px 0; min-height: 60px; overflow: hidden;
-      background: #0a0a0a; border-radius: 8px; border: 1px dashed #333;
-    }
-  </style>
-</head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#090d18"><title>Sami X Manager</title>
+<style>
+:root{--bg:#090d18;--panel:#111827;--panel2:#151f31;--line:#253149;--muted:#94a3b8;--text:#eef4ff;--blue:#4f8cff;--cyan:#40d7d0;--green:#31c48d;--red:#fb7185;--shadow:0 18px 50px #0005}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 80% 0%,#152c50 0,transparent 36%),var(--bg);color:var(--text);font:15px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif}button,input,textarea{font:inherit}button{cursor:pointer}.shell{display:grid;grid-template-columns:250px minmax(0,1fr);min-height:100vh}.side{border-right:1px solid var(--line);padding:26px 17px;background:#0b1120d9;position:sticky;top:0;height:100vh}.brand{display:flex;align-items:center;gap:11px;padding:0 10px 30px}.logo{width:40px;height:40px;border-radius:13px;background:linear-gradient(135deg,#55a3ff,#6d5cff);display:grid;place-items:center;font-weight:900;font-size:20px;box-shadow:0 8px 25px #4f8cff55}.brand b{font-size:17px;letter-spacing:.1px}.brand small{display:block;color:var(--muted);font-size:11px}.nav-label{color:#66758e;font-size:10px;font-weight:800;letter-spacing:1.5px;padding:14px 12px 8px}.nav button{width:100%;border:0;background:transparent;color:#aab7cc;padding:11px 13px;border-radius:11px;text-align:left;display:flex;gap:12px;align-items:center;margin:3px 0}.nav button.active,.nav button:hover{background:#1a2a45;color:white}.nav .ico{width:20px;text-align:center;font-size:17px}.side-bottom{position:absolute;bottom:20px;left:17px;right:17px}.help{border:1px solid var(--line);background:#111b2c;border-radius:14px;padding:14px;color:var(--muted);font-size:12px}.help b{display:block;color:var(--text);margin-bottom:5px}.main{min-width:0;padding:28px clamp(18px,4vw,48px) 50px;max-width:1500px;width:100%;margin:auto}.top{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:30px}.eyebrow{color:var(--cyan);font-size:11px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase}.top h1{font-size:27px;margin:4px 0 0;letter-spacing:-.7px}.top-actions{display:flex;align-items:center;gap:10px}.avatar{width:38px;height:38px;border-radius:50%;background:#203552;display:grid;place-items:center;color:#a8d2ff;font-weight:800}.btn{border:1px solid var(--line);background:#172238;color:var(--text);border-radius:10px;padding:10px 15px;font-weight:700}.btn:hover{filter:brightness(1.15)}.btn.primary{border:0;background:linear-gradient(120deg,#438fff,#6d65ff);box-shadow:0 8px 22px #4f8cff33}.btn.ghost{background:transparent}.btn.small{padding:7px 11px;font-size:12px}.grid{display:grid;gap:16px}.stats{grid-template-columns:repeat(4,minmax(0,1fr));margin-bottom:18px}.card{background:linear-gradient(145deg,#131e30,#101827);border:1px solid var(--line);border-radius:16px;padding:19px;box-shadow:var(--shadow)}.stat-top{display:flex;justify-content:space-between;color:var(--muted);font-size:12px}.stat-icon{width:31px;height:31px;border-radius:10px;background:#1c3557;display:grid;place-items:center;color:#8fc1ff}.stat-num{font-size:29px;font-weight:800;letter-spacing:-1px;margin:13px 0 1px}.stat-note{font-size:11px;color:#7e8da5}.columns{grid-template-columns:minmax(0,1.5fr) minmax(280px,.85fr)}.card-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:17px}.card-head h2{font-size:15px;margin:0}.muted{color:var(--muted)}.post-row{display:flex;align-items:flex-start;gap:12px;padding:13px 0;border-top:1px solid #202d42}.post-row:first-of-type{border-top:0}.post-avatar{width:36px;height:36px;border-radius:12px;background:#213452;display:grid;place-items:center;flex:none;font-weight:800;color:#a7d1ff}.post-info{min-width:0;flex:1}.post-info b{font-size:13px}.post-info p{font-size:12px;color:#aab7cc;margin:4px 0 6px;overflow-wrap:anywhere}.post-meta{font-size:11px;color:#72839d}.pill{font-size:10px;font-weight:800;padding:4px 8px;border-radius:20px;background:#183d36;color:#71e2b6;white-space:nowrap}.pill.demo{background:#392e19;color:#f5c66e}.account{display:flex;align-items:center;gap:11px;padding:12px 0;border-top:1px solid #202d42}.account:first-of-type{border-top:0}.xavatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#283f60,#17233a);display:grid;place-items:center;font-weight:800}.account-info{flex:1;min-width:0}.account-info b{display:block;font-size:13px}.account-info small{color:var(--muted)}.empty{padding:25px;text-align:center;color:var(--muted);border:1px dashed #34445d;border-radius:12px;font-size:13px}.notice{margin:0 0 20px;padding:12px 15px;border:1px solid #6a5128;background:#2b2418;color:#f3d59b;border-radius:12px;font-size:12px}.page{display:none}.page.active{display:block}.page-title{display:flex;align-items:end;justify-content:space-between;gap:14px;margin-bottom:20px}.page-title h2{font-size:22px;margin:0}.page-title p{margin:4px 0 0;color:var(--muted);font-size:13px}.compose{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(260px,.7fr);gap:16px}.field{margin:13px 0}.field label{display:block;font-size:12px;color:#aebbd0;margin-bottom:7px}.field input,.field textarea{width:100%;background:#0b1423;color:var(--text);border:1px solid #2b3a52;border-radius:10px;padding:12px;outline:none}.field textarea{min-height:170px;resize:vertical}.field input:focus,.field textarea:focus{border-color:var(--blue)}.row-between{display:flex;justify-content:space-between;align-items:center;gap:10px}.counter{font-size:11px;color:var(--muted)}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.list-table{width:100%;border-collapse:collapse;font-size:12px}.list-table th,.list-table td{text-align:left;padding:12px 9px;border-bottom:1px solid #243148}.list-table th{color:#8393ad;font-size:10px;text-transform:uppercase;letter-spacing:1px}.chart{height:180px;display:flex;align-items:end;gap:9px;padding:15px 5px 0;border-bottom:1px solid #30405a}.bar{flex:1;min-width:8px;border-radius:7px 7px 0 0;background:linear-gradient(#59a5ff,#4b64d8);opacity:.9}.bar-labels{display:flex;justify-content:space-between;color:#7888a1;font-size:10px;margin-top:8px}.settings-row{padding:16px 0;border-bottom:1px solid #26334a;display:flex;justify-content:space-between;gap:20px}.settings-row b{font-size:13px}.settings-row p{margin:4px 0 0;color:var(--muted);font-size:12px}.overlay{display:none;position:fixed;inset:0;background:#030712c9;z-index:5;place-items:center;padding:18px}.overlay.show{display:grid}.modal{width:min(460px,100%);background:#121d30;border:1px solid #30415e;border-radius:18px;padding:24px;box-shadow:var(--shadow)}.modal h2{margin:0 0 5px;font-size:20px}.modal p{font-size:12px;color:var(--muted)}.modal-actions{display:flex;gap:9px;justify-content:flex-end;margin-top:18px}.toast{position:fixed;bottom:20px;right:20px;background:#1b2c43;border:1px solid #3b5272;border-radius:11px;padding:12px 16px;z-index:10;display:none;font-size:13px}.toast.show{display:block}.mobile-menu{display:none}
+@media(max-width:900px){.shell{grid-template-columns:1fr}.side{height:auto;position:relative;padding:13px 15px;border-right:0;border-bottom:1px solid var(--line)}.brand{padding:0}.nav{display:flex;overflow:auto;gap:4px;margin-top:13px}.nav-label,.side-bottom{display:none}.nav button{width:auto;white-space:nowrap;padding:9px 11px}.nav button .ico{display:none}.main{padding-top:22px}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.columns,.compose{grid-template-columns:1fr}}
+@media(max-width:520px){.top{align-items:flex-start}.top h1{font-size:22px}.top-actions .btn{padding:8px 10px;font-size:12px}.stats{gap:10px}.card{padding:15px}.stat-num{font-size:25px}.page-title{align-items:flex-start;flex-direction:column}.list-table{min-width:550px}.table-wrap{overflow:auto}.main{padding-left:14px;padding-right:14px}}
+</style></head>
 <body>
-
-<div class="header">🔥 Trending Videos</div>
-
-<div class="feed-container">
-
-  <div class="ad-card" onclick="openDirectLink()">
-    <div class="ad-tag">Viral Video</div>
-    <img src="https://i.ibb.co/Z6dZtKMP/your-filename.jpg" alt="Video Thumb"> 
-    <div class="play-btn"></div>
-    <div class="info"><span>@viral_hub:</span> Watch full uncut video here! 😱</div>
+<div class="shell">
+<aside class="side">
+ <div class="brand"><div class="logo">S</div><div><b>Sami X Manager</b><small>Social workspace</small></div></div>
+ <div class="nav-label">WORKSPACE</div>
+ <nav class="nav" id="nav">
+  <button class="active" data-page="overview"><span class="ico">▦</span>Overview</button>
+  <button data-page="accounts"><span class="ico">◎</span>Accounts</button>
+  <button data-page="composer"><span class="ico">✎</span>Post composer</button>
+  <button data-page="schedule"><span class="ico">◷</span>Schedule</button>
+  <button data-page="drafts"><span class="ico">▤</span>Drafts</button>
+  <button data-page="analytics"><span class="ico">▥</span>Analytics</button>
+  <button data-page="inbox"><span class="ico">✉</span>Inbox</button>
+ </nav>
+ <div class="nav-label">PREFERENCES</div>
+ <nav class="nav"><button data-page="settings"><span class="ico">⚙</span>Settings</button></nav>
+ <div class="side-bottom"><div class="help"><b>Built for thoughtful publishing</b>Connect your own X accounts securely. No password collection, bots or bulk engagement.</div></div>
+</aside>
+<main class="main">
+ <header class="top"><div><div class="eyebrow">SOCIAL MEDIA WORKSPACE</div><h1 id="heading">Good to see you.</h1></div><div class="top-actions"><button class="btn primary" id="quickCompose">＋ Create post</button><div class="avatar" id="userAvatar">S</div></div></header>
+ <div class="notice" id="demoNotice">Demo preview — sample numbers and accounts are illustrative. Sign in and connect X through the official authorization flow to use live features.</div>
+ <section class="page active" id="page-overview">
+  <div class="grid stats">
+   <div class="card"><div class="stat-top"><span>Connected accounts</span><span class="stat-icon">◎</span></div><div class="stat-num" id="statAccounts">0</div><div class="stat-note">Your linked X profiles</div></div>
+   <div class="card"><div class="stat-top"><span>Posts published</span><span class="stat-icon">↗</span></div><div class="stat-num" id="statPublished">0</div><div class="stat-note">Tracked in this workspace</div></div>
+   <div class="card"><div class="stat-top"><span>Scheduled</span><span class="stat-icon">◷</span></div><div class="stat-num" id="statScheduled">0</div><div class="stat-note">Upcoming planned posts</div></div>
+   <div class="card"><div class="stat-top"><span>Drafts</span><span class="stat-icon">▤</span></div><div class="stat-num" id="statDrafts">0</div><div class="stat-note">Saved ideas</div></div>
   </div>
-  <div class="banner-slot">
-    <script type="text/javascript">
-      atOptions = { 'key' : 'fe8aa9149ae7d82faf899145087d9c7f', 'format' : 'iframe', 'height' : 300, 'width' : 160, 'params' : {} };
-    </script>
-    <script type="text/javascript" src="//www.highperformanceformat.com/fe8aa9149ae7d82faf899145087d9c7f/invoke.js"></script>
+  <div class="grid columns">
+   <div class="card"><div class="card-head"><h2>Recent activity</h2><button class="btn small ghost" data-go="schedule">View schedule →</button></div><div id="recentList"><div class="empty">Sign in to see your publishing activity.</div></div></div>
+   <div class="card"><div class="card-head"><h2>Your X accounts</h2><button class="btn small" id="connectSmall">＋ Connect</button></div><div id="accountPreview"><div class="empty">No X accounts connected yet.</div></div></div>
   </div>
-
-  <div class="ad-card" onclick="openDirectLink()">
-    <div class="ad-tag">Leaked</div>
-    <img src="https://i.ibb.co/HpBc9gJT/your-filename.jpg" alt="Video Thumb">
-    <div class="play-btn"></div>
-    <div class="info"><span>@trending_now:</span> Part 2 is finally out! 🔥</div>
+ </section>
+ <section class="page" id="page-accounts">
+  <div class="page-title"><div><h2>Accounts</h2><p>Manage profiles authorized through X OAuth.</p></div><button class="btn primary" id="connectBtn">＋ Connect X account</button></div>
+  <div class="card"><div id="accountsList"><div class="empty">Sign in first, then connect an X account.</div></div></div>
+ </section>
+ <section class="page" id="page-composer">
+  <div class="page-title"><div><h2>Post composer</h2><p>Write once, review carefully, and publish to a selected account.</p></div></div>
+  <div class="compose">
+   <div class="card"><div class="card-head"><h2>Compose post</h2><span class="pill demo" id="composerMode">PREVIEW</span></div>
+    <div class="field"><label for="postAccount">Publish from</label><select id="postAccount" class="field input" style="width:100%;background:#0b1423;color:white;border:1px solid #2b3a52;border-radius:10px;padding:12px"><option value="">Select an X account</option></select></div>
+    <div class="field"><label for="postText">Your post</label><textarea id="postText" maxlength="280" placeholder="What's happening?"></textarea><div class="row-between"><span class="muted" style="font-size:11px">Keep it clear, useful and authentic.</span><span class="counter" id="counter">0 / 280</span></div></div>
+    <div class="toolbar"><button class="btn small" id="saveDraft">Save draft</button><button class="btn small" id="schedulePost">Schedule</button><button class="btn primary" id="publishPost">Publish post</button></div>
+    <div class="muted" style="font-size:11px">Publishing requires X API access and the appropriate account permissions. Always review your post before sending.</div>
+   </div>
+   <div class="card"><div class="card-head"><h2>Live preview</h2><span class="muted" style="font-size:11px">X post</span></div><div class="post-row"><div class="post-avatar">S</div><div class="post-info"><b id="previewName">Your account</b><div class="post-meta">@yourhandle · now</div><p id="previewText">Your post preview will appear here as you type.</p></div></div><div class="empty" style="margin-top:18px">Media attachments will be enabled after the upload service is configured.</div></div>
   </div>
-  <div class="banner-slot">
-    <script type="text/javascript">
-      atOptions = { 'key' : '974d3406055af3ea9f321838f9c01398', 'format' : 'iframe', 'height' : 600, 'width' : 160, 'params' : {} };
-    </script>
-    <script type="text/javascript" src="//www.highperformanceformat.com/974d3406055af3ea9f321838f9c01398/invoke.js"></script>
-  </div>
-
-  <div class="ad-card" onclick="openDirectLink()">
-    <div class="ad-tag">Trending #1</div>
-    <img src="https://i.ibb.co/Q3k6mKXz/your-filename.jpg" alt="Video Thumb">
-    <div class="play-btn"></div>
-    <div class="info"><span>@daily_clips:</span> Tap to play video. 🔞</div>
-  </div>
-  <div class="banner-slot">
-    <script type="text/javascript">
-      atOptions = { 'key' : '47ed111e16ef86aa2b128650e1648cde', 'format' : 'iframe', 'height' : 50, 'width' : 320, 'params' : {} };
-    </script>
-    <script type="text/javascript" src="//www.highperformanceformat.com/47ed111e16ef86aa2b128650e1648cde/invoke.js"></script>
-  </div>
-
-  <div class="ad-card" onclick="openDirectLink()">
-    <div class="ad-tag">Must Watch</div>
-    <img src="https://i.ibb.co/DHrkhxsW/your-filename.jpg" alt="Video Thumb">
-    <div class="play-btn"></div>
-    <div class="info"><span>@exclusive:</span> You won't believe this! 🤯</div>
-  </div>
-  <div class="banner-slot">
-    <script type='text/javascript' src='//pl29119917.profitablecpmratenetwork.com/1b/ed/09/1bed093d24ba42fac57052db42b2de12.js'></script>
-  </div>
-
-  <div class="ad-card" onclick="openDirectLink()">
-    <div class="ad-tag">Viral Video</div>
-    <img src="https://i.ibb.co/Z6dZtKMP/your-filename.jpg" alt="Video Thumb">
-    <div class="play-btn"></div>
-    <div class="info"><span>@viral_hub:</span> Secret footage leaked! 🤫</div>
-  </div>
-  <div class="banner-slot">
-    <div id="container-3fe4eeb6b6ddf68c84674a5b72462cca"></div>
-    <script async="async" data-cfasync="false" src="//pl29119918.profitablecpmratenetwork.com/3fe4eeb6b6ddf68c84674a5b72462cca/invoke.js"></script>
-  </div>
-
-  <div class="ad-card" onclick="openDirectLink()">
-    <div class="ad-tag">New Clip</div>
-    <img src="https://i.ibb.co/HpBc9gJT/your-filename.jpg" alt="Video Thumb">
-    <div class="play-btn"></div>
-    <div class="info"><span>@user991:</span> Watch before it gets deleted! ⚠️</div>
-  </div>
-  <div class="banner-slot">
-    <script type='text/javascript' src='//pl29119920.profitablecpmratenetwork.com/23/6a/79/236a79afd277968655375c22c8a750fb.js'></script>
-  </div>
-
-  <div class="ad-card" onclick="openDirectLink()">
-    <div class="ad-tag">Top Hit</div>
-    <img src="https://i.ibb.co/Q3k6mKXz/your-filename.jpg" alt="Video Thumb">
-    <div class="play-btn"></div>
-    <div class="info"><span>@top_videos:</span> Full HD Video Link 👇</div>
-  </div>
-  <div class="banner-slot">
-    <script type="text/javascript">
-      atOptions = { 'key' : 'd5bf2c6e917eaf2f43a442e5dad4b5d6', 'format' : 'iframe', 'height' : 60, 'width' : 468, 'params' : {} };
-    </script>
-    <script type="text/javascript" src="//www.highperformanceformat.com/d5bf2c6e917eaf2f43a442e5dad4b5d6/invoke.js"></script>
-  </div>
-
-  <div class="ad-card" onclick="openDirectLink()">
-    <div class="ad-tag">Recommended</div>
-    <img src="https://i.ibb.co/DHrkhxsW/your-filename.jpg" alt="Video Thumb">
-    <div class="play-btn"></div>
-    <div class="info"><span>@foryou:</span> Just for you. Tap to play! ▶️</div>
-  </div>
-  <div class="banner-slot">
-    <script type="text/javascript">
-      atOptions = { 'key' : '714dc16729fb39b33ddc3f8a1cee6a55', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} };
-    </script>
-    <script type="text/javascript" src="//www.highperformanceformat.com/714dc16729fb39b33ddc3f8a1cee6a55/invoke.js"></script>
-  </div>
-
-  <div class="ad-card" onclick="openDirectLink()">
-    <div class="ad-tag">Live Stream</div>
-    <img src="https://i.ibb.co/Z6dZtKMP/your-filename.jpg" alt="Video Thumb">
-    <div class="play-btn"></div>
-    <div class="info"><span>@live_cam:</span> Join the private stream! 🔴</div>
-  </div>
-  <div class="banner-slot">
-    <a href="https://undergocutlery.com/wtaet9u1?key=e1288fdb966f08d0d8258b50cddcc2e1" target="_blank" style="display:block; width:100%; text-align:center; padding:15px; background:#fe2c55; color:#fff; text-decoration:none; font-weight:bold; border-radius:5px;">PLAY NEXT VIDEO HD</a>
-  </div>
-
-</div>
-
-<script>
-  // Aapka Adsterra Direct Link (Popunder / OnClick)
-  const DIRECT_LINK = "https://undergocutlery.com/wtaet9u1?key=e1288fdb966f08d0d8258b50cddcc2e1";
-
-  // 1. Unlimited Clicks on Post
-  // Jab bhi user kisi bhi post (image ya play button) par click karega, ye function chalega.
-  function openDirectLink() {
-    window.open(DIRECT_LINK, "_blank");
-  }
-
-  // 2. Extra Pop-under: Agar user ghalti se khali jagah ya background par click kar de
-  document.body.addEventListener('click', function(e) {
-    // Agar click kisi Post (.ad-card) par nahi hua, toh tab bhi ad khol do
-    if (!e.target.closest('.ad-card')) {
-      window.open(DIRECT_LINK, "_blank");
-    }
-  });
-</script>
-
-</body>
-</html>
+ </section>
+ <section class="page" id="page-schedule"><div class="page-title"><div><h2>Schedule</h2><p>Plan upcoming content and keep your calendar organized.</p></div><button class="btn primary" data-go="composer">＋ Plan a post</button></div><div class="card"><div id="scheduleList"><div class="empty">No scheduled posts yet.</div></div></div></section>
+ <section class="page" id="page-drafts"><div class="page-title"><div><h2>Drafts</h2><p>Unpublished ideas saved in this browser.</p></div><button class="btn primary" data-go="composer">＋ New draft</button></div><div class="card"><div id="draftList"><div class="empty">No drafts saved yet.</div></div></div></section>
+ <section class="page" id="page-analytics"><div class="page-title"><div><h2>Analytics</h2><p>Performance insights from your connected accounts.</p></div></div><div class="card"><div class="eyebrow">PUBLISHING ACTIVITY</div><h2 style="margin:6px 0">Your activity overview</h2><p class="muted" style="font-size:12px">Live analytics will appear when the X API plan and metrics permissions support them.</p><div class="chart" aria-label="Illustrative activity chart"><div class="bar" style="height:25%"></div><div class="bar" style="height:43%"></div><div class="bar" style="height:35%"></div><div class="bar" style="height:66%"></div><div class="bar" style="height:51%"></div><div class="bar" style="height:80%"></div><div class="bar" style="height:61%"></div></div><div class="bar-labels"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span></div><div class="notice" style="margin-top:18px">Chart is illustrative only; it is not live account analytics.</div></div></section>
+ <section class="page" id="page-inbox"><div class="page-title"><div><h2>Inbox</h2><p>Keep track of conversations and mentions.</p></div></div><div class="card"><div class="empty">Inbox integration is not enabled yet. It will require the relevant X API access and permissions.</div></div></section>
+ <section class="page" id="page-settings"><div class="page-title"><div><h2>Settings</h2><p>Account access and workspace configuration.</p></div></div><div class="card">
+  <div class="settings-row"><div><b>Workspace sign-in</b><p id="authStatus">Not signed in. Add your Supabase project settings to enable login.</p></div><button class="btn" id="authBtn">Sign in</button></div>
+  <div class="settings-row"><div><b>X authorization</b><p>Uses official X OAuth. Your X password is never requested by this app.</p></div><button class="btn" id="settingsConnect">Connect X</button></div>
+  <div class="settings-row"><div><b>Data & privacy</b><p>Tokens are intended to be stored server-side encrypted. Never paste API secrets into the website.</p></div><span class="pill">SECURITY</span></div>
+  <div class="settings-row"><div><b>Sign out</b><p>End this workspace session on this device.</p></div><button class="btn" id="signOut">Sign out</button></div>
+ </div></section>
+ <footer style="margin-top:25px;color:#64748b;font-size:11px;text-align:center">Sami X Manager · Independent publishing workspace · Not affiliated with X Corp.</footer>
+</main></div>
+<div class="overlay" id="authModal"><div class="modal"><h2>Welcome to Sami X Manager</h2><p>Sign in or create your workspace account.</p><div class="field"><label>Email</label><input id="email" type="email" placeholder="you@example.com"></div><div class="field"><label>Password</label><input id="password" type="password" placeholder="At least 8 characters"></div><div class="modal-actions"><button class="btn" id="closeAuth">Cancel</button><button class="btn" id="signIn">Sign in</button><button class="btn primary" id="signUp">Create account</button></div></div></div>
+<div class="overlay" id="scheduleModal"><div class="modal"><h2>Schedule this post</h2><p>Choose a future date and time. The current starter build saves the plan locally; automated publishing needs the scheduler service to be configured.</p><div class="field"><label>Date and time</label><input id="scheduleAt" type="datetime-local"></div><div class="modal-actions"><button class="btn" id="cancelSchedule">Cancel</button><button class="btn primary" id="confirmSchedule">Save schedule</button></div></div></div>
+<div class="toast" id="toast"></div>
+<script type="module">
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+const $ = id => document.getElementById(id);
+let supabase=null, session=null, accounts=[], posts=[], drafts=JSON.parse(localStorage.getItem('sxm_drafts')||'[]'), scheduled=JSON.parse(localStorage.getItem('sxm_scheduled')||'[]'), published=0;
+const toast = msg => { $('toast').textContent=msg; $('toast').classList.add('show'); setTimeout(()=> $('toast').classList.remove('show'),3000); };
+const saveLocal=()=>{localStorage.setItem('sxm_drafts',JSON.stringify(drafts));localStorage.setItem('sxm_scheduled',JSON.stringify(scheduled));};
+async function init(){
+ try{const r=await fetch('/api/config');if(r.ok){const c=await r.json();if(c.supabaseUrl&&c.supabaseAnonKey){supabase=createClient(c.supabaseUrl,c.supabaseAnonKey);const {data}=await supabase.auth.getSession();session=data.session;supabase.auth.onAuthStateChange((_e,s)=>{session=s;refresh();});}}}catch(e){}
+ refresh();
+ const params=new URLSearchParams(location.search);if(params.get('connected')==='1'){history.replaceState({},'',location.pathname);toast('X account connected.');}
+ if(params.get('oauth_error')){toast('X connection failed: '+params.get('oauth_error'));history.replaceState({},'',location.pathname);}
+}
+function go(page){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));$('page-'+page)?.classList.add('active');document.querySelectorAll('[data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===page));const titles={overview:'Good to see you.',accounts:'Your accounts',composer:'Create something meaningful.',schedule:'Your publishing calendar',drafts:'Ideas worth saving.',analytics:'Understand your performance.',inbox:'Your conversations',settings:'Workspace settings'};$('heading').textContent=titles[page]||'Sami X Manager';}
+document.querySelectorAll('[data-page]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.page)));
+document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.go)));
+$('quickCompose').onclick=()=>go('composer');$('connectSmall').onclick=$('connectBtn').onclick=$('settingsConnect').onclick=connectX;
+$('postText').addEventListener('input',()=>{$('counter').textContent=$('postText').value.length+' / 280';$('previewText').textContent=$('postText').value||'Your post preview will appear here as you type.';});
+$('postAccount').addEventListener('change',()=>{const a=accounts.find(x=>x.id===$('postAccount').value);$('previewName').textContent=a?'@'+a.username:'Your account';});
+$('authBtn').onclick=()=>{if(!supabase){toast('Supabase settings are not configured yet.');return;} $('authModal').classList.add('show');};
+$('closeAuth').onclick=()=>$('authModal').classList.remove('show');
+$('signIn').onclick=()=>authAction('signin');$('signUp').onclick=()=>authAction('signup');
+async function authAction(mode){if(!supabase)return;const email=$('email').value.trim(),password=$('password').value;if(!email||password.length<8){toast('Enter a valid email and password (8+ characters).');return;}const res=mode==='signup'?await supabase.auth.signUp({email,password}):await supabase.auth.signInWithPassword({email,password});if(res.error){toast(res.error.message);return;}session=res.data.session;$('authModal').classList.remove('show');toast(mode==='signup'&&!session?'Check your email to confirm your account.':'Signed in successfully.');refresh();}
+$('signOut').onclick=async()=>{if(supabase)await supabase.auth.signOut();session=null;accounts=[];refresh();toast('Signed out.');};
+async function api(path,method='GET',body){if(!session?.access_token)throw new Error('Please sign in first.');const r=await fetch(path,{method,headers:{'Authorization':'Bearer '+session.access_token,'Content-Type':'application/json'},body:body?JSON.stringify(body):undefined});const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(j.error||'Request failed');return j;}
+async function connectX(){if(!session){go('settings');$('authModal').classList.add('show');toast('Sign in before connecting X.');return;}try{const d=await api('/api/oauth/start','POST');if(d.url)location.href=d.url;else throw new Error('Could not start X authorization.');}catch(e){toast(e.message);}}
+async function refresh(){const signed=!!session;$('authStatus').textContent=signed?'Signed in as '+(session.user.email||'your account'):'Not signed in. Add Supabase settings to enable login.';$('authBtn').textContent=signed?'Signed in':'Sign in';$('userAvatar').textContent=signed?(session.user.email||'S').charAt(0).toUpperCase():'S';$('demoNotice').style.display=signed?'none':'block';if(signed){try{const d=await api('/api/accounts');accounts=d.accounts||[];}catch(e){accounts=[];}}else accounts=[];render();}
+function render(){const opts=accounts.map(a=>'<option value="'+a.id+'">@'+escapeHtml(a.username)+'</option>').join('');$('postAccount').innerHTML='<option value="">Select an X account</option>'+opts;$('statAccounts').textContent=accounts.length;$('statPublished').textContent=published;$('statScheduled').textContent=scheduled.length;$('statDrafts').textContent=drafts.length;$('composerMode').textContent=accounts.length?'LIVE ACCOUNT':'PREVIEW';$('composerMode').className='pill '+(accounts.length?'':'demo');
+const accountHtml=accounts.length?accounts.map(a=>'<div class="account"><div class="xavatar">𝕏</div><div class="account-info"><b>@'+escapeHtml(a.username)+'</b><small>Connected account</small></div><span class="pill">CONNECTED</span></div>').join(''):'<div class="empty">No X accounts connected. Use “Connect X account” to authorize one.</div>';
+$('accountsList').innerHTML=accountHtml;$('accountPreview').innerHTML=accountHtml;
+$('draftList').innerHTML=drafts.length?drafts.map((d,i)=>'<div class="post-row"><div class="post-avatar">D</div><div class="post-info"><b>Draft '+(i+1)+'</b><p>'+escapeHtml(d.text)+'</p><div class="post-meta">'+new Date(d.created).toLocaleString()+'</div></div><button class="btn small" data-edit="'+i+'">Edit</button><button class="btn small" data-delete="'+i+'">Delete</button></div>').join(''):'<div class="empty">No drafts saved yet.</div>';
+$('scheduleList').innerHTML=scheduled.length?scheduled.map((d,i)=>'<div class="post-row"><div class="post-avatar">◷</div><div class="post-info"><b>Planned post</b><p>'+escapeHtml(d.text)+'</p><div class="post-meta">'+new Date(d.at).toLocaleString()+' · Local plan only</div></div><button class="btn small" data-cancel="'+i+'">Remove</button></div>').join(''):'<div class="empty">No scheduled posts yet.</div>';
+$('recentList').innerHTML=published?'<div class="post-row"><div class="post-avatar">✓</div><div class="post-info"><b>Post published</b><p>Latest publishing activity from this session.</p><div class="post-meta">Just now</div></div><span class="pill">SENT</span></div>':'<div class="empty">Your publishing activity will appear here after your first post.</div>';
+document.querySelectorAll('[data-edit]').forEach(b=>b.onclick=()=>{const d=drafts[+b.dataset.edit];$('postText').value=d.text;$('postText').dispatchEvent(new Event('input'));go('composer');});
+document.querySelectorAll('[data-delete]').forEach(b=>b.onclick=()=>{drafts.splice(+b.dataset.delete,1);saveLocal();render();});
+document.querySelectorAll('[data-cancel]').forEach(b=>b.onclick=()=>{scheduled.splice(+b.dataset.cancel,1);saveLocal();render();});
+}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+$('saveDraft').onclick=()=>{const text=$('postText').value.trim();if(!text)return toast('Write something first.');drafts.unshift({text,created:new Date().toISOString()});saveLocal();$('postText').value='';$('postText').dispatchEvent(new Event('input'));render();toast('Draft saved on this device.');};
+$('schedulePost').onclick=()=>{if(!$('postText').value.trim())return toast('Write a post first.');$('scheduleModal').classList.add('show');};
+$('cancelSchedule').onclick=()=>$('scheduleModal').classList.remove('show');
+$('confirmSchedule').onclick=()=>{const at=$('scheduleAt').value;if(!at||new Date(at)<=new Date())return toast('Choose a future date and time.');scheduled.push({text:$('postText').value.trim(),at:new Date(at).toISOString()});saveLocal();$('scheduleModal').classList.remove('show');$('postText').value='';$('postText').dispatchEvent(new Event('input'));render();toast('Saved as a local schedule. Automated posting is not active yet.');};
+$('publishPost').onclick=async()=>{const text=$('postText').value.trim(),accountId=$('postAccount').value;if(!text)return toast('Write a post first.');if(!accountId)return toast('Select a connected X account.');try{await api('/api/publish','POST',{accountId,text});published++;$('postText').value='';$('postText').dispatchEvent(new Event('input'));render();toast('Post published successfully.');}catch(e){toast(e.message);}};
+init();
+</script></body></html>
