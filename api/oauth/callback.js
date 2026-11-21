@@ -1,8 +1,12 @@
 const { env, parseCookies, unsign, db, encrypt } = require('../../lib/server');
 
 module.exports = async function handler(req, res) {
-  const base = (process.env.APP_URL || '').replace(/\\/$/, '');
-  const redirect = (path) => res.redirect(302, base + path);
+  const base = (process.env.APP_URL || '').replace(/\/+$/, '');
+  const redirect = (path) => {
+    res.statusCode = 302;
+    res.setHeader('Location', base + path);
+    res.end();
+  };
   try {
     if (req.query.error) return redirect('/?oauth_error=' + encodeURIComponent(String(req.query.error)));
     const cookie = parseCookies(req).sxm_oauth;
