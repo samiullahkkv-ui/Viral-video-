@@ -43,7 +43,7 @@ export default function Home() {
   }, []);
   async function signIn(e: FormEvent) {
     e.preventDefault(); setSending(true); setError(""); setNotice("");
-    const { error } = await supabase.auth.signInWithOtp({ email, options: { emailRedirectTo: window.location.origin + "/auth/callback" } });
+    const { error } = await supabase.auth.signInWithOtp({ email, options: { emailRedirectTo: "https://sami-social-ai-git-main-samiullahkkv-8301s-projects.vercel.app/auth/callback" } });
     setSending(false);
     if (error) setError(error.message); else setNotice("Sign-in link sent. Check your email inbox.");
   }
